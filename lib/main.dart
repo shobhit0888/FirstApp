@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Home_page.dart';
 
 void main() {
   runApp(Skim());
@@ -10,13 +11,7 @@ class Skim extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home:Material(
-      child:Center(
-      child: Container(
-        child: Text("Welcome to Skiome"),
-      ),
-    )
-      )
+        home: HomePage()
     );
   }
 }
