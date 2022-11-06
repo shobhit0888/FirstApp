@@ -14,6 +14,7 @@ class Skim extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: MyRoutes.homeRoute,
         routes: {
         "/":(context) => LoginPage(),
         MyRoutes.homeRoute:(context) => HomePage(),
