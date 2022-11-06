@@ -1,11 +1,49 @@
-import 'package:flutter/material.dart' show BoxFit, BuildContext, Colors, Column, EdgeInsets, ElevatedButton, FontWeight, Image, InputDecoration, Material, Padding, SizedBox, StatelessWidget, Text, TextButton, TextFormField, TextStyle, Widget, debugPrint;
+import 'dart:ui';
 
-class LoginPage extends StatelessWidget {
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart'
+    show
+        BoxFit,
+        BuildContext,
+        Colors,
+        Column,
+        EdgeInsets,
+        ElevatedButton,
+        FontWeight,
+        Icons,
+        Image,
+        InkWell,
+        InputDecoration,
+        Material,
+        Navigator,
+        Padding,
+        SingleChildScrollView,
+        SizedBox,
+        StatelessWidget,
+        Text,
+        TextButton,
+        TextFormField,
+        TextStyle,
+        Widget,
+        debugPrint;
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_application_1/utils/routes.dart';
+
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String name = "";
+  bool changeButton = false;
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: Colors.white,
+      color: Colors.white,
+      child: SingleChildScrollView(
         child: Column(
           children: [
             Image.asset(
@@ -15,8 +53,8 @@ class LoginPage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            const Text(
-              "Welcome to Skiome",
+            Text(
+              "Welcome $name",
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -38,21 +76,60 @@ class LoginPage extends StatelessWidget {
                       hintText: "Enter password",
                       labelText: "Password",
                     ),
+                    onChanged: (value) {
+                      name = value;
+                      setState(() {});
+                    },
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
-                      debugPrint("Welcome to Skiome World");
+                  InkWell(
+                    onTap: () async {
+                      setState(() {
+                        changeButton = true;
+                      });
+                      await Future.delayed(Duration(seconds: 1));
+                      Navigator.pushNamed(context, MyRoutes.homeRoute);
                     },
-                    style: TextButton.styleFrom(),
-                    child: Text("Login"),
+                    child: AnimatedContainer(
+                      duration: Duration(seconds: 1),
+                      width: changeButton ? 50 : 120,
+                      height: 50,
+                      alignment: Alignment.center,
+                      child: changeButton
+                          ? Icon(
+                              Icons.done,
+                              color: Colors.white,
+                            )
+                          : Text(
+                              "Login",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                      decoration: BoxDecoration(
+                        color: Colors.purple,
+                        borderRadius:
+                            BorderRadius.circular(changeButton ? 50 : 10),
+                      ),
+                    ),
                   )
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     Navigator.pushNamed(context, MyRoutes.homeRoute);
+                  //   },
+                  //   style: TextButton.styleFrom(minimumSize: Size(100, 40)),
+                  //   child: Text("Login"),
+                  // )
                 ],
               ),
             )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
