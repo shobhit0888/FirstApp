@@ -13,8 +13,7 @@ class MyTheme {
           titleTextStyle: Theme.of(context).textTheme.headline6,
         ),
       );
-       static ThemeData darkTheme(BuildContext context) => ThemeData(
-       brightness: Brightness.dark,
+  static ThemeData darkTheme(BuildContext context) => ThemeData(
+        brightness: Brightness.dark,
       );
 }
-
