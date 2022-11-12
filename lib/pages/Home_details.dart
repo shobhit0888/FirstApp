@@ -11,10 +11,12 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      backgroundColor: MyTheme.creamColor,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
+      backgroundColor: context.canvasColor,
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.cardColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -23,7 +25,7 @@ class HomeDetailPage extends StatelessWidget {
                     onPressed: () {},
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(MyTheme.darkBluishColor),
+                          MaterialStateProperty.all(context.theme.buttonColor),
                       shape: MaterialStateProperty.all(StadiumBorder()),
                     ),
                     child: "Buy".text.xl.make())
@@ -45,18 +47,24 @@ class HomeDetailPage extends StatelessWidget {
                 arcType: VxArcType.CONVEY,
                 edge: VxEdge.TOP,
                 child: Container(
-                  color: Colors.white,
+                  color: context.cardColor,
                   width: context.screenWidth,
                   child: Column(
                     children: [
                       skim.name.text.bold.xl4
-                          .color(MyTheme.darkBluishColor)
+                          .color(context.theme.buttonColor)
                           .make(),
                       skim.desc.text
                           .textStyle(context.captionStyle)
                           .xl
                           .center
                           .make(),
+                      "Ipsum sadipscing ea lorem consetetur amet stet amet sit. Sit sea accusam duo no aliquyam gubergren et, elitr sed kasd erat dolor nonumy, et kasd erat sed voluptua ipsum et sea et sit, elitr invidunt no et consetetur consetetur dolor diam ea, consetetur dolor at et ipsum. Sanctus ipsum clita."
+                          .text
+                          .textStyle(context.captionStyle)
+                          .make()
+                          .px24()
+                          .py12(),
                     ],
                   ).py32(),
                 ),

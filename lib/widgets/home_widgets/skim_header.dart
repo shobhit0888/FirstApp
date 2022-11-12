@@ -10,7 +10,7 @@ class SkimHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        "Skiome".text.xl4.bold.color(MyTheme.darkBluishColor).make(),
+        "Skiome".text.xl4.bold.color(context.theme.buttonColor).make(),
         "A way to Skill Development".text.xl2.make(),
       ],
     );

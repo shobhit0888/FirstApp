@@ -16,7 +16,7 @@ class SkimList extends StatelessWidget {
         shrinkWrap: true,
         itemCount: SkimModel.items.length,
         itemBuilder: ((context, index) {
-          final skim = SkimModel.items[index];
+          final skim = SkimModel.getByPosition(index);
           return InkWell(
               onTap: () => Navigator.push(
                   context,
@@ -45,7 +45,7 @@ class SkimItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            skim.name.text.bold.lg.color(MyTheme.darkBluishColor).make(),
+            skim.name.text.bold.lg.color(context.theme.buttonColor).make(),
             skim.desc.text.textStyle(context.captionStyle).make(),
             ButtonBar(
               alignment: MainAxisAlignment.spaceBetween,
@@ -55,7 +55,7 @@ class SkimItem extends StatelessWidget {
                     onPressed: () {},
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(MyTheme.darkBluishColor),
+                          MaterialStateProperty.all(context.theme.buttonColor),
                       shape: MaterialStateProperty.all(StadiumBorder()),
                     ),
                     child: "Buy".text.make()),
@@ -64,6 +64,6 @@ class SkimItem extends StatelessWidget {
           ],
         ))
       ],
-    )).white.rounded.square(150).make().py16();
+    )).color(context.cardColor).rounded.square(150).make().py16();
   }
 }
