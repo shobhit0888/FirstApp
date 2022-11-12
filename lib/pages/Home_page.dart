@@ -11,6 +11,8 @@ import 'package:flutter_application_1/widgets/themes.dart';
 
 import '../widgets/drawer.dart';
 import '../widgets/items_widget.dart';
+import '../widgets/home_widgets/skim_header.dart';
+import '../widgets/home_widgets/skim_list.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -51,94 +53,11 @@ class _HomePageState extends State<HomePage> {
                   SkimList().expand()
                 else
                   Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator().centered().expand(),
                   )
               ],
             ),
           ),
         ));
-  }
-}
-
-class SkimHeader extends StatelessWidget {
-  const SkimHeader({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        "Skiome".text.xl4.bold.color(MyTheme.darkBluishColor).make(),
-        "A way to Skill Development".text.xl2.make(),
-      ],
-    );
-  }
-}
-
-class SkimList extends StatelessWidget {
-  const SkimList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: SkimModel.items.length,
-        itemBuilder: ((context, index) {
-          final skim = SkimModel.items[index];
-          return SkimItem(skim: skim);
-        }));
-  }
-}
-
-class SkimItem extends StatelessWidget {
-  const SkimItem({
-    Key? key,
-    required this.skim,
-  })  : assert(skim != null),
-        super(key: key);
-  final Item skim;
-  @override
-  Widget build(BuildContext context) {
-    return VxBox(
-        child: Row(
-      children: [
-        SkimImage(image: skim.image),
-        Expanded(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            skim.name.text.bold.lg.color(MyTheme.darkBluishColor).make(),
-            skim.desc.text.textStyle(context.captionStyle).make(),
-            ButtonBar(
-              alignment: MainAxisAlignment.spaceBetween,
-              children: [
-                "Rs.${skim.price}".text.bold.xl2.make(),
-                ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(MyTheme.darkBluishColor),
-                      shape: MaterialStateProperty.all(StadiumBorder()),
-                    ),
-                    child: "Buy".text.make()),
-              ],
-            )
-          ],
-        ))
-      ],
-    )).white.rounded.square(150).make().py16();
-  }
-}
-
-class SkimImage extends StatelessWidget {
-  final String image;
-
-  const SkimImage({super.key, required this.image});
-  @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      image,
-    ).box.rounded.p16.color(MyTheme.creamColor).make().p16().w40(context);
   }
 }

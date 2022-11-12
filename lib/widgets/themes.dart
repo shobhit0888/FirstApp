@@ -18,5 +18,5 @@ class MyTheme {
       );
   //color
   static Color creamColor = Color(0xfff5f5f5);
-  static Color darkBluishColor = Color.fromARGB(255, 7, 2, 28);
+  static Color darkBluishColor = Color.fromARGB(255, 24, 6, 97);
 }
