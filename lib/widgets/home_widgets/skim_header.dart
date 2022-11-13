@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:velocity_x/velocity_x.dart';
-import '../themes.dart';
 
 class SkimHeader extends StatelessWidget {
   const SkimHeader({super.key});

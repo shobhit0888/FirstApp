@@ -8,6 +8,7 @@ import '../../models/cart.dart';
 import '../../models/skim.dart';
 import '../themes.dart';
 import '../../pages/Home_page.dart';
+import 'add_to_cart.dart';
 
 class SkimList extends StatelessWidget {
   const SkimList({super.key});
@@ -53,7 +54,7 @@ class SkimItem extends StatelessWidget {
               alignment: MainAxisAlignment.spaceBetween,
               children: [
                 "Rs.${skim.price}".text.bold.xl2.make(),
-                _AddtoCart(skim: skim),
+                AddtoCart(skim: skim),
               ],
             ),
           ],
@@ -63,32 +64,3 @@ class SkimItem extends StatelessWidget {
   }
 }
 
-class _AddtoCart extends StatefulWidget {
-  final Item skim;
-  const _AddtoCart({super.key, required this.skim});
-
-  @override
-  State<_AddtoCart> createState() => _AddtoCartState();
-}
-
-class _AddtoCartState extends State<_AddtoCart> {
-  bool isAdded = false;
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        isAdded = isAdded.toggle();
-        final _skim = SkimModel();
-        final _cart = CartModel();
-        _cart.skim = _skim;
-        _cart.add(widget.skim);
-        setState(() {});
-      },
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(context.theme.buttonColor),
-        shape: MaterialStateProperty.all(StadiumBorder()),
-      ),
-      child: isAdded ? Icon(Icons.done) : "Buy".text.make(),
-    );
-  }
-}

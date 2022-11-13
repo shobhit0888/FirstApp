@@ -5,9 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 
 class SkimModel {
-  static final skiModel = SkimModel._internal();
-  SkimModel._internal();
-  factory SkimModel() => skiModel;
+ 
   static List<Item> items = [];
 
   set skim(SkimModel skim) {}
