@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/main.dart';
 import 'package:flutter_application_1/pages/Home_details.dart';
 import 'package:flutter_application_1/widgets/home_widgets/skim_image.dart';
 import 'package:velocity_x/velocity_x.dart';
+import '../../models/cart.dart';
 import '../../models/skim.dart';
 import '../themes.dart';
 import '../../pages/Home_page.dart';
@@ -16,7 +18,7 @@ class SkimList extends StatelessWidget {
         shrinkWrap: true,
         itemCount: SkimModel.items.length,
         itemBuilder: ((context, index) {
-          final skim = SkimModel.getByPosition(index);
+          final skim = SkimModel.items[index];
           return InkWell(
               onTap: () => Navigator.push(
                   context,
@@ -51,19 +53,42 @@ class SkimItem extends StatelessWidget {
               alignment: MainAxisAlignment.spaceBetween,
               children: [
                 "Rs.${skim.price}".text.bold.xl2.make(),
-                ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(context.theme.buttonColor),
-                      shape: MaterialStateProperty.all(StadiumBorder()),
-                    ),
-                    child: "Buy".text.make()),
+                _AddtoCart(skim: skim),
               ],
             ),
           ],
         ))
       ],
     )).color(context.cardColor).rounded.square(150).make().py16();
+  }
+}
+
+class _AddtoCart extends StatefulWidget {
+  final Item skim;
+  const _AddtoCart({super.key, required this.skim});
+
+  @override
+  State<_AddtoCart> createState() => _AddtoCartState();
+}
+
+class _AddtoCartState extends State<_AddtoCart> {
+  bool isAdded = false;
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        isAdded = isAdded.toggle();
+        final _skim = SkimModel();
+        final _cart = CartModel();
+        _cart.skim = _skim;
+        _cart.add(widget.skim);
+        setState(() {});
+      },
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(context.theme.buttonColor),
+        shape: MaterialStateProperty.all(StadiumBorder()),
+      ),
+      child: isAdded ? Icon(Icons.done) : "Buy".text.make(),
+    );
   }
 }

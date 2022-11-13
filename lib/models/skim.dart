@@ -5,10 +5,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 
 class SkimModel {
+  static final skiModel = SkimModel._internal();
+  SkimModel._internal();
+  factory SkimModel() => skiModel;
   static List<Item> items = [];
-  static Item getById(int id) =>
+
+  set skim(SkimModel skim) {}
+  Item getById(int id) =>
       items.firstWhere((element) => element.id == id, orElse: null);
-  static Item getByPosition(int pos) => items[pos];
+  Item getByPosition(int pos) => items[pos];
+
+  void add(Item skim) {}
 }
 
 class Item {
