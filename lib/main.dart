@@ -6,19 +6,15 @@ import 'package:flutter_application_1/utils/routes.dart';
 import 'package:flutter_application_1/widgets/themes.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import 'core/store.dart';
 
 void main() {
   runApp(VxState(
     store: MyStore(),
-
     child: Skim()));
 }
-
 class Skim extends StatelessWidget {
   const Skim({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
